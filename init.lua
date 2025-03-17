@@ -805,6 +805,16 @@ require('lazy').setup({
     end,
   },
 
+  -- Enable VimTex
+ { 
+  "lervag/vimtex",
+  -- lazy = false, -- uncomment if you use a neovim config like NvChad which lazy-loads all plugins by default
+  init = function()
+    vim.g.vimtex_view_general_viewer = "SumatraPDF"
+    vim.g.vimtex_view_general_options = [[-reuse-instance -forward-search @tex @line @pdf]]
+  end,
+},
+
   -- Enable floating terminal
   {
     'akinsho/toggleterm.nvim',
@@ -836,6 +846,39 @@ require('lazy').setup({
     end,
   },
 
+  -- Wezterm navigation between slipts
+  {
+    {
+      'letieu/wezterm-move.nvim',
+      keys = { -- Lazy loading, don't need call setup() function
+        {
+          '<C-h>',
+          function()
+            require('wezterm-move').move 'h'
+          end,
+        },
+        {
+          '<C-j>',
+          function()
+            require('wezterm-move').move 'j'
+          end,
+        },
+        {
+          '<C-k>',
+          function()
+            require('wezterm-move').move 'k'
+          end,
+        },
+        {
+          '<C-l>',
+          function()
+            require('wezterm-move').move 'l'
+          end,
+        },
+      },
+    },
+  },
+
   -- Colorscheme
   {
     'catppuccin/nvim',
@@ -845,16 +888,39 @@ require('lazy').setup({
       require('catppuccin').setup {
         flavour = 'mocha', -- Set theme to Mocha
         integrations = {
-          treesitter = true,
-          native_lsp = { enabled = true },
-          lsp_trouble = true,
-          telescope = true,
-          which_key = true,
+          aerial = true,
+          alpha = true,
           cmp = true,
+          dashboard = true,
+          flash = true,
           gitsigns = true,
-          nvimtree = true,
-          markdown = true,
+          headlines = true,
+          illuminate = true,
+          indent_blankline = { enabled = true },
+          leap = true,
+          lsp_trouble = true,
           mason = true,
+          markdown = true,
+          mini = true,
+          native_lsp = {
+            enabled = true,
+            underlines = {
+              errors = { 'undercurl' },
+              hints = { 'undercurl' },
+              warnings = { 'undercurl' },
+              information = { 'undercurl' },
+            },
+          },
+          navic = { enabled = true, custom_bg = 'lualine' },
+          neotest = true,
+          neotree = true,
+          noice = true,
+          notify = true,
+          semantic_tokens = true,
+          telescope = true,
+          treesitter = true,
+          treesitter_context = true,
+          which_key = true,
         },
       }
 

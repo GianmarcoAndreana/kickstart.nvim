@@ -806,15 +806,15 @@ require('lazy').setup({
   },
 
   -- Enable VimTex
- { 
-  "lervag/vimtex",
-  -- lazy = false, -- uncomment if you use a neovim config like NvChad which lazy-loads all plugins by default
-  init = function()
-    vim.g.vimtex_view_general_viewer = "SumatraPDF"
-    vim.g.vimtex_view_general_options = [[-reuse-instance -forward-search @tex @line @pdf]]
-    vim.g.vimtex_quickfix_autoclose_after_keystrokes = 1
-  end,
-},
+  {
+    'lervag/vimtex',
+    lazy = false,
+    init = function()
+      vim.g.vimtex_view_general_viewer = 'SumatraPDF'
+      vim.g.vimtex_view_general_options = [[-reuse-instance -forward-search @tex @line @pdf]]
+      vim.g.vimtex_quickfix_autoclose_after_keystrokes = 1
+    end,
+  },
 
   -- Enable floating terminal
   {
@@ -976,7 +976,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc'},
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -985,7 +985,7 @@ require('lazy').setup({
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' }, 
+        additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby', 'latex' } },
     },
@@ -1045,5 +1045,8 @@ require('lazy').setup({
   },
 })
 
+-- Load custom snippets
+require('luasnip').filetype_extend('tex', { 'latex' })
+require('luasnip.loaders.from_lua').load { paths = 'C:\\Users\\giamm\\AppData\\Local\\nvim\\lua\\snippets' }
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
